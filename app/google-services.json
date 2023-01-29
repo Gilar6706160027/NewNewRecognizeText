@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "739718301599",
+    "firebase_url": "https://recognizetext-e8304-default-rtdb.firebaseio.com",
+    "project_id": "recognizetext-e8304",
+    "storage_bucket": "recognizetext-e8304.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739718301599:android:2e07fe2ae181bc7a355faa",
+        "android_client_info": {
+          "package_name": "com.gilar.newrecognizetext"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "739718301599-s93cp2c95qq9s406r2rntl0fau5ts4b4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCTUUJUMoafDKH_SAiRuLQ_pF0m7n6i2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739718301599-s93cp2c95qq9s406r2rntl0fau5ts4b4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
