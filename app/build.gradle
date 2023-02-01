@@ -74,5 +74,13 @@ dependencies {
     // https://firebase.google.com/docs/android/setup#available-libraries
 
 
+    // view model and live data
+    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
+
+    // Android navigation architecture
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
+
+
 
 }

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.gilar.newrecognizetext.ui.dashboard.DashboardFragment"
+        android:name="com.gilar.newrecognizetext.ui.dashboard.ListDataTextFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_list_data_text" />
 </navigation>

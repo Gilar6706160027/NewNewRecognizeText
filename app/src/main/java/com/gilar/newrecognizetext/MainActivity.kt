@@ -33,8 +33,4 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
-    fun getDeviceName(): String? {
-        return (Build.MANUFACTURER
-                + " " + Build.MODEL + " ")
-    }
 }

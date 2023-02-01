@@ -14,16 +14,23 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gilar.newrecognizetext.MainActivity
+import com.gilar.newrecognizetext.data.TextData
 import com.gilar.newrecognizetext.databinding.FragmentHomeBinding
+import com.gilar.newrecognizetext.databinding.FragmentListDataTextBinding
+import com.gilar.newrecognizetext.viewmodel.ListDataTextViewModel
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.text.TextRecognizer
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 
 
 class HomeFragment : Fragment() {
+
+    private lateinit var viewModel: ListDataTextViewModel
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -73,6 +80,13 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        viewModel = ViewModelProvider(this).get(ListDataTextViewModel::class.java)
+        return root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
         binding.btnTakeImg.setOnClickListener {
             ImagePicker.with(this)
                 .crop()
@@ -82,10 +96,12 @@ class HomeFragment : Fragment() {
                     startForProfileImageResult.launch(intent)
                 }
         }
+        viewModel.textResultBefore.observe(viewLifecycleOwner, Observer {
+            edTextResultBefore = it
+        })
         binding.btnSave.setOnClickListener {
             saveData()
         }
-        return root
     }
 
     override fun onDestroyView() {
@@ -108,24 +124,28 @@ class HomeFragment : Fragment() {
         }else if(edTextResult == edTextResultBefore){
             Toast.makeText(requireContext(),"Your data is still the same",Toast.LENGTH_SHORT).show()
         }else{
-            dataRef = database.getReference((activity as MainActivity?)!!.getDeviceName().toString())
-            query = dataRef.orderByKey().limitToLast(1)
-            query.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.exists()) {
-                        for (childSnapshot in snapshot.children) {
-                            count = childSnapshot.key!!.toInt()
-                            count++
-                        }
-                        configSave(count)
-                    }else{
-                        configSave(count)
-                    }
-                }
-                override fun onCancelled(error: DatabaseError) {
-                }
 
-            })
+            val texData = TextData()
+            texData.text = edTextResult
+            viewModel.addAuthor(texData,requireContext())
+//            dataRef = database.getReference((activity as MainActivity?)!!.getDeviceName().toString())
+//            query = dataRef.orderByKey().limitToLast(1)
+//            query.addListenerForSingleValueEvent(object : ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    if(snapshot.exists()) {
+//                        for (childSnapshot in snapshot.children) {
+//                            count = childSnapshot.key!!.toInt()
+//                            count++
+//                        }
+//                        configSave(count)
+//                    }else{
+//                        configSave(count)
+//                    }
+//                }
+//                override fun onCancelled(error: DatabaseError) {
+//                }
+//
+//            })
         }
     }
 
