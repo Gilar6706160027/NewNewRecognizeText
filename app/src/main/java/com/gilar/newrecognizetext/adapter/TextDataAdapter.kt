@@ -1,5 +1,6 @@
 package com.gilar.newrecognizetext.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ class TextDataAdapter : RecyclerView.Adapter<TextDataAdapter.TextDataViewModel>(
     override fun getItemCount() = dataTexts.size
 
     override fun onBindViewHolder(holder: TextDataViewModel, position: Int) {
+
         holder.tvTextDataa.text = dataTexts[position].text
         holder.btnUpdate.setOnClickListener {
             listener?.onRecyclerViewItemClicked(it, dataTexts[position])

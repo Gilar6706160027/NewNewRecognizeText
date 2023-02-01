@@ -32,6 +32,10 @@ class ListDataTextViewModel : ViewModel() {
     val textResultBefore: LiveData<String>
         get() = _textResultBefore
 
+    private val _dataEmpty = MutableLiveData<Boolean>()
+    val dataEmpty: LiveData<Boolean>
+        get() = _dataEmpty
+
     // create result
     private val _result = MutableLiveData<Exception?>()
     val result: LiveData<Exception?>
@@ -96,7 +100,10 @@ class ListDataTextViewModel : ViewModel() {
                     dataTexts?.id = textDataSnapshot.key
                     dataTexts?.let { textData.add(it) }
                 }
+                _dataEmpty.value = false
                 _datatexts.value = textData
+            }else{
+                _dataEmpty.value = true
             }
         }
     }

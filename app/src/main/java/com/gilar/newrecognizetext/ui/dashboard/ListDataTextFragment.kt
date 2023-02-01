@@ -59,9 +59,19 @@ class ListDataTextFragment : Fragment(),
         // panggil fun get realtimeupdate
         viewModel.getRealtimeUpdates()
 
+        viewModel.dataEmpty.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                binding.layoutEmpty.visibility = View.VISIBLE
+                binding.recyclerView.visibility = View.GONE
+            }
+            Snackbar.make(this.requireView(), "Data is Empty", Snackbar.LENGTH_SHORT).show()
+        })
+
         viewModel.dataTexts.observe(viewLifecycleOwner, Observer {
+            binding.layoutEmpty.visibility = View.GONE
+            binding.recyclerView.visibility = View.VISIBLE
             adapter.setDataTexts(it)
-            Snackbar.make(this.requireView(), "Author fetched!", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(this.requireView(), "Data successfully retrieved!", Snackbar.LENGTH_SHORT).show()
         })
 
         viewModel.dataText.observe(viewLifecycleOwner, Observer {
