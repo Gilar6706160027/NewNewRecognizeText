@@ -128,24 +128,6 @@ class HomeFragment : Fragment() {
             val texData = TextData()
             texData.text = edTextResult
             viewModel.addAuthor(texData,requireContext())
-//            dataRef = database.getReference((activity as MainActivity?)!!.getDeviceName().toString())
-//            query = dataRef.orderByKey().limitToLast(1)
-//            query.addListenerForSingleValueEvent(object : ValueEventListener {
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//                    if(snapshot.exists()) {
-//                        for (childSnapshot in snapshot.children) {
-//                            count = childSnapshot.key!!.toInt()
-//                            count++
-//                        }
-//                        configSave(count)
-//                    }else{
-//                        configSave(count)
-//                    }
-//                }
-//                override fun onCancelled(error: DatabaseError) {
-//                }
-//
-//            })
         }
     }
 
